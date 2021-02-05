@@ -34,19 +34,20 @@ export default {
             this.$router.push('/se-connecter');
         }
         
+      } else {
+
+        this.chargerMembres();
+        this.$bus.$on('charger-membres', this.chargerMembres);
+
+        this.chargerConversation();
+        this.$bus.$on('charger-Conversation', this.chargerConversation);
       }
-      
-      
+     
       this.apiOk=true;
     }).catch(error =>{
       console.log("l'api ne marche pas");
     })
 
-    this.chargerMembres();
-    this.$bus.$on('charger-membres', this.chargerMembres);
-
-    this.chargerConversation();
-    this.$bus.$on('charger-Conversation', this.chargerConversation);
   },
   methods: {
     chargerMembres(){
@@ -56,7 +57,7 @@ export default {
           this.$store.commit('setMembres', response.data);
 
       }).catch(error => {
-          alert(error.response.data.message)
+          console.log('members',error.response.data.message)
       })
     },
 
@@ -68,7 +69,7 @@ export default {
           this.$store.commit('setConversation', response.data);
 
       }).catch(error => {
-          alert(error.response.data.message)
+          console.log('channels',error.response.data.message)
       })
 
     },
