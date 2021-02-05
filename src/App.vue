@@ -1,12 +1,81 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+  <div id="app" v-if="apiOk">
+    <Header/>
+
     <router-view/>
   </div>
+  <div v-else>
+    l'api ne marche pas
+  </div>
 </template>
+
+<script>
+import Header from '@/components/Header.vue';
+export default {
+  
+  components: {
+    Header
+  },
+
+  data() {
+    return {
+      apiOk:false
+    }
+  },
+  mounted() {
+    console.log("lapp est démarée")
+
+    api.get('ping').then(reponse =>{
+      console.log('lapi est fonctionelle');
+
+      if(!this.$store.state.membre){
+
+        if(this.$route.path != '/se-connecter' && this.$route.path != '/creer-Compte'){
+            this.$router.push('/se-connecter');
+        }
+        
+      }
+      
+      
+      this.apiOk=true;
+    }).catch(error =>{
+      console.log("l'api ne marche pas");
+    })
+
+    this.chargerMembres();
+    this.$bus.$on('charger-membres', this.chargerMembres);
+
+    this.chargerConversation();
+    this.$bus.$on('charger-Conversation', this.chargerConversation);
+  },
+  methods: {
+    chargerMembres(){
+      api.get('members', {
+          token : this.$store.state.token
+      }).then(response => {
+          this.$store.commit('setMembres', response.data);
+
+      }).catch(error => {
+          alert(error.response.data.message)
+      })
+    },
+
+    chargerConversation(){
+
+      api.get('channels', {
+          token : this.$store.state.token
+      }).then(response => {
+          this.$store.commit('setConversation', response.data);
+
+      }).catch(error => {
+          alert(error.response.data.message)
+      })
+
+    },
+
+  },
+}
+</script>
 
 <style lang="scss">
 #app {
