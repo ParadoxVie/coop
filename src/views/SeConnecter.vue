@@ -43,7 +43,7 @@ export default {
             }).then(response => {
                 this.$store.commit('setMembre', response.data.member);
                 this.$store.commit('setToken', response.data.token);
-                this.$router.push('/')
+                this.$router.push('/Conversations')
             }).catch(error => {
                 alert(error.response.data.message)
             })
