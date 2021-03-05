@@ -3,7 +3,7 @@
         <nav class="navbar" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
                 <a class="navbar-item" href="https://bulma.io">
-                 <p class="title is-2"><router-link to="/">Co'op</router-link></p>
+                 <p class="title is-2"><router-link to="/Conversations">Co'op</router-link></p>
                 </a>
 
                 <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
