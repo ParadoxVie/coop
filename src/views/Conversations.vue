@@ -2,15 +2,16 @@
     <div>
         <h1 class="title is-1">Liste des Conversations</h1>
         <button @click="ouvrirForm()" class="button is-link is-outlined">Créer une conversation</button>
-        
-        <div v-if="afficherForm" class="modal" id="modal1">
-            <div id="modal_content">
-                <h3 class="title is-3">Créer une conversation</h3>            
-                <CreerConversation/>
-                <button @click="fermerForm()" id="modal_close">X</button>
-            </div>
-        </div>
 
+        <div class="ModalCreateConvo">
+            <div v-if="afficherForm" class="modal" id="modal1">
+                <div id="modal_content">
+                    <h3 class="title is-3">Créer une conversation</h3>            
+                    <CreerConversation/>
+                    <button @click="fermerForm()" id="modal_close">X</button>
+                </div>
+            </div>    
+        </div>
         <div class="liste-conversation">
             <table>
                 <tr>
@@ -60,7 +61,7 @@ export default {
 
 <style lang="scss">
 
-.modal {
+.ModalCreateConvo .modal {
     width:100%;
     height: 100%;
     position: absolute;
@@ -69,7 +70,7 @@ export default {
     background-color: rgba(0, 0, 0, 0.5);
 }
 
-.modal #modal_close {
+.ModalCreateConvo .modal #modal_close {
     
     opacity: 1;
     color: rgb(255, 0, 0);
@@ -80,12 +81,12 @@ export default {
     background-color: white;
     
 }
-.modal #modal_close:hover {
+.ModalCreateConvo .modal #modal_close:hover {
     color: rgba(255, 46, 46, 0.5);
     
 }
 
-.modal  #modal_content {
+.ModalCreateConvo .modal  #modal_content {
     box-sizing: border-box;
     
     color : white(255, 0, 0);

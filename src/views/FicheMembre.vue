@@ -4,7 +4,8 @@
         <div class="InformationMembre">
             <p class="subtitle is-5">Email : {{leMembre.email}}</p>
             <p class="subtitle is-5">Créer le : {{leMembre.depuis}}</p>
-            <div v-for="message in messages">
+            <img :src="'https://avatars.dicebear.com/v2/avataaars/'+mailHash+'.svg'" alt="fail" width="150px">
+            <div v-for="message in messagesTries">
                 <MsgMembre :unMsg="message"/>
             </div>
         </div>
@@ -22,15 +23,35 @@ export default {
     data() {
         return {
             leMembre: [],
-            messages: []
+            messages: [],
+            mailHash: ''
+        }
+    },
+
+    computed:{
+        messagesTries(){
+            function compare(a, b){
+                if(a.created_at > b.created_at){
+                    return -1;
+                }
+                if(a.created_at < b.created_at){
+                    return 1;
+                }
+                return 0;
+            }
+            return this.messages.sort(compare).slice(0,10);
         }
     },
 
     mounted() {
+        var md5 = require('md5');
+        
         this.leMembre = this.$store.getters.getMembre(this.$route.params.id);
         let d = new Date(this.leMembre.created_at)
         let options = { weekday: 'long', year:'numeric', month:'long', day:'numeric'};
         this.leMembre.depuis = d.toLocaleDateString('fr-Fr', options)
+        console.log(md5(this.leMembre.email))
+        this.mailHash = md5(this.leMembre.email);
 
         this.$store.state.conversations.forEach(conversation => {
             api.get('channels/'+conversation.id+'/posts').then(response => {
@@ -41,6 +62,8 @@ export default {
                 });
             })        
         });
+
+        
     },
 }
 </script>

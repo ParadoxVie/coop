@@ -9,7 +9,7 @@ const vuexLocal = new VuexPersistence({
 })
 
 export default new Vuex.Store({
-  state: {
+  state: { //déclare les variables du store
 
     membre:false,
     token : false,
@@ -19,19 +19,19 @@ export default new Vuex.Store({
   },
   mutations: {
 
-    setMembre(state, membre){
+    setMembre(state, membre){ // stock la personne co
       state.membre = membre
     },
 
-    setMembres(state, membres){
+    setMembres(state, membres){// stock tous les membres de l'api
       state.membres = membres
     },
 
-    setConversation(state, conversations){
+    setConversation(state, conversations){// stock toutes les convo de l'api
       state.conversations = conversations
     },
 
-    setToken(state, token){
+    setToken(state, token){//stock le token de l'api
       state.token = token
     },
 

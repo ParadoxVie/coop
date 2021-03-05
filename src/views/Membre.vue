@@ -6,7 +6,7 @@
                     Liste des membres (Nb membres)
                 </tr>
                 <tr v-for="unMembre in $store.state.membres">
-                    <img src="../assets/Icon/person.png" alt="">
+                    <AvatarMember :mailMembre="unMembre.email"/>
                     <router-link :to="{name: 'fiche-membre', params:{id : unMembre.id}}">
                     <b>{{unMembre.fullname}}</b> /
                     {{unMembre.email}}
@@ -21,11 +21,13 @@
 
 <script>
 import listeMembres from '@/components/listeMembres.vue';
+import AvatarMember from '@/components/AvatarMember.vue';
 
 export default {
-
+    
     components: {
-        listeMembres
+        listeMembres,
+        AvatarMember
     },
 
     data() {
@@ -36,20 +38,19 @@ export default {
         }
     },
 
+    mounted() {
+
+    },
+
 }
 </script>
 
 <style>
 
-
-img:first-child{
-    float:left;
-    width:20px;
-}
-div.img{
+div.imgDelMember{
     float:right;
 }
-div.img img{
+div.imgDelMember img{
     width:20px;
     margin-left: 0%;;
 }

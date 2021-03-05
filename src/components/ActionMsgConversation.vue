@@ -1,10 +1,10 @@
 <template>
     <div>
 
-        <img @click="supprimerMsg" src="../assets/Icon/trash.svg" alt="">
-        <img @click="ouvrirForm" src="../assets/Icon/edit.png" alt="">
+        <img class="ActionMsg" @click="supprimerMsg" src="../assets/Icon/trash.svg" alt="">
+        <img class="ActionMsg" @click="ouvrirForm" src="../assets/Icon/edit.png" alt="">
 
-        <div v-if="afficherForm" class="modal" id="modal1">
+        <div v-if="afficherForm" class="modalModifMess" id="modal1">
             <div id="modal_content">
                 <h3 class="title is-4">Modifier le message '{{unMsg.message}}' de {{unMembre.fullname}}</h3>            
                     <div class="ModifMsg">
@@ -78,22 +78,22 @@ export default {
 
 <style lang="scss">
 
-img{
-    margin-right: 50px;
+img.ActionMsg{
+    margin-right: 10px;
     width:20px;
     float: right;
 }
 
-.modal {
+.modalModifMess {
     width:100%;
-    height: 100%;
+    height: 2300px;
     position: absolute;
     top:0; left:0;
     display: block;
     background-color: rgba(0, 0, 0, 0.5);
 }
 
-.modal #modal_close {
+.modalModifMess #modal_close {
     
     opacity: 1;
     color: rgb(255, 0, 0);
@@ -104,12 +104,12 @@ img{
     background-color: white;
     
 }
-.modal #modal_close:hover {
+.modalModifMess #modal_close:hover {
     color: rgba(255, 46, 46, 0.5);
     
 }
 
-.modal  #modal_content {
+.modalModifMess  #modal_content {
     box-sizing: border-box;
     
     color : white(255, 0, 0);
@@ -123,11 +123,11 @@ img{
 
 }
 
-.ModifMsg button{
+.modalModifMess .ModifMsg button{
     margin-left: 38%;
 }
 
-.modifMsg input{
+.modalModifMess .modifMsg input{
     width: 60%;
 }
     

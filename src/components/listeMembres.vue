@@ -1,5 +1,5 @@
 <template>
-    <div class="img">
+    <div class="imgDelMember">
         <img @click="supprimerMembre" src="../assets/Icon/trash.svg" alt="">
     </div>
 </template>

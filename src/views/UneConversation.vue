@@ -8,7 +8,10 @@
 
             <div class="test" v-for="message in messages">
                 <div v-if="unMembre.id == message.member_id">
-                    <b>{{unMembre.fullname}}</b>/{{message.message}}
+                    <AvatarMember :mailMembre="unMembre.email"/>
+                    <router-link :to="{name: 'fiche-membre', params:{id : unMembre.id}}">
+                        <b>{{unMembre.fullname}}</b>/{{message.message}}
+                    </router-link>
                     <ActionMsg :unMembre="unMembre" :unMsg="message"/>
                     <hr>
                 </div>
@@ -35,10 +38,12 @@
 
 <script>
 import ActionMsg from '@/components/ActionMsgConversation.vue';
+import AvatarMember from '@/components/AvatarMember.vue';
 export default {
 
     components: {
         ActionMsg,
+        AvatarMember
     },
     data() {
         return {
@@ -89,6 +94,7 @@ export default {
                 token : this.$store.state.token
             }).then(response => {
                 this.chargerMsg();
+                this.message = "";
             }).catch(error => {
                 alert(error.response.data.message)
             })

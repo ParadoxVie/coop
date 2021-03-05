@@ -28,7 +28,7 @@ export default {
     api.get('ping').then(reponse =>{
       console.log('lapi est fonctionelle');
 
-      if(!this.$store.state.membre){
+      if(!this.$store.state.membre){ // si personne est co affiche la route pour ce connecter
 
         if(this.$route.path != '/se-connecter' && this.$route.path != '/creer-Compte'){
             this.$router.push('/se-connecter');
@@ -36,10 +36,10 @@ export default {
         
       } else {
 
-        this.chargerMembres();
+        this.chargerMembres(); // récupère tous les membres de l'api, les stocks dans le store
         this.$bus.$on('charger-membres', this.chargerMembres);
 
-        this.chargerConversation();
+        this.chargerConversation();// récupère toutes les conversations de l'api, les stocks dans le store
         this.$bus.$on('charger-Conversation', this.chargerConversation);
       }
      
