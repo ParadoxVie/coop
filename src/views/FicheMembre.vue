@@ -2,7 +2,7 @@
     <div>
         <h1 class="title is-1">Fiche du membre :{{leMembre.fullname}}</h1>
         <div class="InformationMembre">
-            <p class="subtitle is-5">Email : {{leMembre.email}}</p>
+            <a class="subtitle is-5" :href="'mailto:'+leMembre.email">Email : {{leMembre.email}}</a>
             <p class="subtitle is-5">Créer le : {{leMembre.depuis}}</p>
             <img :src="'https://avatars.dicebear.com/v2/avataaars/'+mailHash+'.svg'" alt="fail" width="150px">
             <div v-for="message in messagesTries">

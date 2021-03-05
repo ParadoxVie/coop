@@ -18,7 +18,7 @@
                     Liste des conversations
                 </tr>
                 <tr v-for="uneConv in $store.state.conversations">
-                    <img src="../assets/Icon/conversation.png" alt="">
+                    <img class="logoConv" src="../assets/Icon/conversation.png" alt="">
                     <b>{{uneConv.label}}</b> /
                     {{uneConv.topic}}
                     <listeConversations :uneConv="uneConv"/>
@@ -101,7 +101,7 @@ export default {
 }
 
 
-img:first-child{
+img.logoConv{
     float:left;
     width:25px;
 }
