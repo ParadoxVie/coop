@@ -15,7 +15,7 @@
         <div class="liste-conversation">
             <table>
                 <tr>
-                    Liste des conversations (Nb membres)
+                    Liste des conversations
                 </tr>
                 <tr v-for="uneConv in $store.state.conversations">
                     <img src="../assets/Icon/conversation.png" alt="">

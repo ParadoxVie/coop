@@ -3,7 +3,7 @@
         <div>
             <table>
                 <tr>
-                    Liste des membres (Nb membres)
+                    Liste des membres
                 </tr>
                 <tr v-for="unMembre in $store.state.membres">
                     <AvatarMember :mailMembre="unMembre.email"/>
