@@ -6,7 +6,7 @@
 
 <script>
 export default {
-    props:['mailMembre'],
+    props:['mailMembre'], // récupère le mail du membre
 
     data() {
         return {
@@ -15,15 +15,17 @@ export default {
     },
 
     mounted() {
-        var md5 = require('md5');
+        let md5 = require('md5');//créer une variable md5 pour pouvoir utiliser le hash
         console.log(md5(this.mailMembre))
-        this.mailHash = md5(this.mailMembre);
+        this.mailHash = md5(this.mailMembre);//hash le mail pour pouvoir créer l'avatar
     },
 }
 </script>
 
 <style lang="css">
+
 .imgAvatar:first-child{
     float:left;
 }
+
 </style>

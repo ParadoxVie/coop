@@ -24,11 +24,13 @@ export default {
     },
 
     mounted() {
+        //récupère le membre choisis avec le getters créer dans le store
         this.leMembre = this.$store.getters.getMembre(this.$route.params.id);
-
+        //formate la date
         let d = new Date(this.unMsg.created_at);
         let options = { weekday: 'long', year:'numeric', month:'long', day:'numeric'};
         this.unMsg.depuis = d.toLocaleDateString('fr-Fr', options);
+        //permet de d'avoir la conversation du message
         api.get('channels/'+this.unMsg.channel_id).then(response => {
             this.channel = response.data;
         }).catch(error => {
@@ -43,9 +45,9 @@ export default {
 <style lang="scss">
 
 .user{
-    border-bottom:solid 1px black;
+    //border-bottom:solid 1px black;
     display:flex;
-    background-color: rgb(243, 243, 243);
+    background-color: rgb(201, 221, 238);
     h4:first-child{
         text-align:left;
         margin-left: 10px;
@@ -60,7 +62,12 @@ export default {
 .leMsg{   
     p{
         text-align:left;
+        
+        margin-left: 10px;
     }
+    background-color: rgb(201, 221, 238);
+    height: 80px;
+    margin-bottom: 2px;
 }
     
 </style>

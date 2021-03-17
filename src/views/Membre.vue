@@ -3,7 +3,7 @@
         <div>
             <table>
                 <tr>
-                    Liste des membres
+                    Liste des membres : {{$store.state.membres.length}}
                 </tr>
                 <tr v-for="unMembre in $store.state.membres">
                     <AvatarMember :mailMembre="unMembre.email"/>
@@ -12,7 +12,6 @@
                     {{unMembre.email}}
                     </router-link>
                     <listeMembres :unMembre="unMembre"/>
-                    
                 </tr>
             </table>
         </div>
@@ -23,11 +22,14 @@
 import listeMembres from '@/components/listeMembres.vue';
 import AvatarMember from '@/components/AvatarMember.vue';
 
-export default {
-    
+export default {  
     components: {
         listeMembres,
         AvatarMember
+    },
+
+    mounted() {
+        this.$bus.$emit('charger-membres'); // charge les membres au chargement de la page
     },
 
     data() {
@@ -37,11 +39,6 @@ export default {
             
         }
     },
-
-    mounted() {
-
-    },
-
 }
 </script>
 
@@ -78,7 +75,5 @@ tr:first-child{
 tr:nth-child(even){
     background-color: #f3f3f3;
 }
-
-
 
 </style>

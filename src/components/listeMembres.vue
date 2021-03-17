@@ -6,9 +6,10 @@
 
 <script>
 export default {
-    props:['unMembre'],
+    props:['unMembre'],// récupère le membre actuel
 
     methods: {
+        // supprime le membre lors du click sur l'icone "trash" empèche le membre de ce supprimer lui même.
         supprimerMembre(){
             console.log(this.unMembre.id);
             if(confirm('Voulez vous supprimer le membre '+this.unMembre.fullname+' ?')){
@@ -23,9 +24,9 @@ export default {
                 }else{
                     alert('Vous ne pouvez pas vous supprimer !');
                 }
-
             }
         }
+        
     },
 }
 </script>

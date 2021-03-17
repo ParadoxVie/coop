@@ -30,6 +30,8 @@ export default {
         }
     },
     methods: {
+
+        //permet de supprimer un message au click de l'icon seulement si c'est la personne co qui a posté le message
         supprimerMsg(){
             if(this.unMsg.member_id == this.$store.state.membre.id){
                 if(confirm('Voulez vous supprimer ce message '+this.unMsg.message+' ?')){
@@ -46,7 +48,7 @@ export default {
 
 
         },
-
+        //permet de modifier un message au click de l'icon seulement si c'est la personne co qui a posté le message
         editMsg(){
             if(this.unMsg.member_id == this.$store.state.membre.id){
 
@@ -63,12 +65,12 @@ export default {
                 alert('Vous ne pouvez pas modifier un message qui n\'est pas le votre');
             }
         },
-
+        //permet de fermer la fenetre modal
         fermerForm(){
             this.afficherForm = false
             this.$bus.$emit('charger-Conversation');
         },
-
+        //permet d'ouvir la fenetre modal
         ouvrirForm(){
             this.afficherForm = true
         }

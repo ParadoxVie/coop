@@ -10,8 +10,10 @@
                 <div v-if="unMembre.id == message.member_id">
                     <AvatarMember :mailMembre="unMembre.email"/>
                     <router-link :to="{name: 'fiche-membre', params:{id : unMembre.id}}">
-                        <b>{{unMembre.fullname}}</b>/{{message.message}}
+                        <b>{{unMembre.fullname}}</b>
                     </router-link>
+                        / {{message.message}}
+                    
                     <ActionMsg :unMembre="unMembre" :unMsg="message"/>
                     <hr>
                 </div>
@@ -55,6 +57,7 @@ export default {
     },
 
     mounted() {
+        //récupère au chargement de la page la conversation avec l'id passé en paramètre de l'url suite au click sur la précédente page
         if(this.$route.params.id){
 
             api.get('channels/'+this.$route.params.id, {
@@ -66,14 +69,14 @@ export default {
             }).catch(error => {
                 alert(error.response.data.message)
             })
-            
+            // Puis charge les messages de la conversation
             this.chargerMsg();
             this.$bus.$on('charger-msg', this.chargerMsg);
         }
     },
 
     methods: {
-
+        //permet de charger les messages de la conversation
         chargerMsg(){
 
             api.get('channels/'+this.$route.params.id +'/posts', {
@@ -85,7 +88,7 @@ export default {
             })
 
         },
-
+        //Permet de poster un message
         sendMsg(){
 
             api.post('channels/'+this.$route.params.id +'/posts', {
@@ -98,7 +101,7 @@ export default {
             }).catch(error => {
                 alert(error.response.data.message)
             })
-
+            //quand le message est posté on recharge donc les messages pour le voir s'afficher directement 
             this.chargerMsg()
         },
 

@@ -30,18 +30,18 @@ export default {
     },
 
     methods: {
+        //Permet de créer une conversation et de la save dans l'api
         creerConversation(){
-
             api.post('channels', {
                 label : this.label,
                 topic : this.topic,
             }).then(response => {
-                alert('La conversation a été créer !');
-                
+                alert('La conversation a été créer !');  
             }).catch(error => {
                 alert(error.response.data.message)
             })
         },
+
     },
 }
 </script>
@@ -51,8 +51,7 @@ export default {
 .FormConv{
     input{
         width: 80%;
-    }
-    
+    } 
 }
 
 </style>

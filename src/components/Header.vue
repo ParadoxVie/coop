@@ -1,5 +1,5 @@
 <template>
-    <header v-if="this.$store.state.token">
+    <header v-if="this.$store.state.token"> 
         <nav class="navbar" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
                 <a class="navbar-item" href="https://bulma.io">
@@ -38,6 +38,7 @@
                             </a>
                         </div>
                         <div v-else class="buttons">
+                            <p class="nameConnected"><router-link :to="{name: 'fiche-membre', params:{id : this.$store.state.membre.id}}">Bonjour {{this.$store.state.membre.fullname}}</router-link> - </p>
                             <a @click="Deconnexion" class="button is-primary">
                                 <strong><router-link to="/se-connecter">Deconnexion</router-link></strong>
                             </a>

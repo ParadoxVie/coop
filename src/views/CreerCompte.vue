@@ -21,7 +21,6 @@
                 </div>
                 <button class="button is-primary">Créer mon compte</button>
             </form>
-
         </div>
         
     </div>
@@ -39,10 +38,9 @@ export default {
         }
     },
     methods: {
+        //Permet de créer un compte et de le save dans l'api, si oui renvoie sur la page de connexion.
         creerCompte(){
-
-            if(this.password === this.password2){
-
+            if(this.password === this.password2){ // test si les 2 mdp sont ==
                 api.post('members', {
                     fullname : this.fullname,
                     email : this.email,
@@ -52,14 +50,12 @@ export default {
                     this.$router.push('/se-connecter');
                 }).catch(error => {
                     alert(error.response.data.message)
-                })
-                
+                })               
             }else{
                 alert('Veuillez re saisir votre mot de passe');
                 this.password = "";
                 this.password2 = "";
             }
-
         }
     },
 }

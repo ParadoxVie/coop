@@ -44,6 +44,7 @@ export default {
         }
     },
     methods: {
+        //Permet de supprimer une conversation au click de l'icon 'trash' si oui recharge les conversations
         supprimerConv(){
             if(confirm('Voulez vous supprimer la conversation '+this.uneConv.label+' ?')){
                 api.delete('channels/'+this.uneConv.id, {
@@ -54,14 +55,18 @@ export default {
                 })
             }
         },
-        
+
+        //Permet d'afficher le formulaire pour modifier une conversation
         showEditForm(){
             this.afficherEditForm = true    
-            console.log(this.afficherEditForm);   
         },
+
+        //Permet de fermer le formulaire pour modifier une conversation
         closeEditForm(){
             this.afficherEditForm = false       
         },
+
+        //Permet d'enregistrer la modification d'une conversation, si oui recharge les conversations
         modifierConv(){
             api.put('channels/'+this.uneConv.id, {
                 label : this.label2,
@@ -73,6 +78,7 @@ export default {
                 alert(error.response.data.message)
             })
         }
+
     }
 }
 

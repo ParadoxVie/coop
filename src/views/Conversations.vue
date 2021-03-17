@@ -15,7 +15,7 @@
         <div class="liste-conversation">
             <table>
                 <tr>
-                    Liste des conversations
+                    Liste des conversations : {{$store.state.conversations.length}}
                 </tr>
                 <tr v-for="uneConv in $store.state.conversations">
                     <img class="logoConv" src="../assets/Icon/conversation.png" alt="">
@@ -35,22 +35,28 @@ import listeConversations from '@/components/listeConversations.vue';
 
 export default {
     components: {
-        CreerConversation,
-        listeConversations
+        CreerConversation, // composant qui affiche le formulaire pour créer une conversation
+        listeConversations // composant qui permet d'afficher/modifier/supprimer une conversation
     },
 
     data() {
         return {
             afficherForm:false,
+            countConv : 0
         }
     },
 
+    mounted() {
+        this.$bus.$emit('charger-Conversation');
+    },
+
     methods: {
+        // méthode qui permet de fermer la fenetre modal au click de la 'X' et de re charcher les conversations
         fermerForm(){
             this.afficherForm = false
             this.$bus.$emit('charger-Conversation');
         },
-
+        // méthode qui permet d'ouvrir la fenetre modal au click du btn 'Créer une conversation'
         ouvrirForm(){
             this.afficherForm = true
         }

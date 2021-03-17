@@ -29,6 +29,7 @@ export default {
     },
 
     computed:{
+        //permet de trier les messages pour afficher seulement les 10 derniers messages de la personne
         messagesTries(){
             function compare(a, b){
                 if(a.created_at > b.created_at){
@@ -44,15 +45,17 @@ export default {
     },
 
     mounted() {
+        //Permet d'utiliser le md5 pour hasher l'adresse mail pour pouvour afficher l'avatar correspondant
         var md5 = require('md5');
-        
+        //récupère le membre correspondant à l'id de l'url en utilisant le getters créer dans le store
         this.leMembre = this.$store.getters.getMembre(this.$route.params.id);
+        // formate la date pour qu'elle s'affiche normalement
         let d = new Date(this.leMembre.created_at)
         let options = { weekday: 'long', year:'numeric', month:'long', day:'numeric'};
         this.leMembre.depuis = d.toLocaleDateString('fr-Fr', options)
-        console.log(md5(this.leMembre.email))
+        //hash le mail
         this.mailHash = md5(this.leMembre.email);
-
+        // récupère les messages posté par l'utilisateur dans les différentes conversations
         this.$store.state.conversations.forEach(conversation => {
             api.get('channels/'+conversation.id+'/posts').then(response => {
                 response.data.forEach(message => {

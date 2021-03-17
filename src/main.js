@@ -6,8 +6,8 @@ import axios from 'axios'
 require("./assets/main.scss")
 
 window.api = axios.create({
-  baseURL: 'https://tools.sopress.net/iut/coop/api/',
-  headers: { Authorization: '5f115f121fd2ed7f3327af8ae65929afad0b8b94' }
+  baseURL: 'https://allweb.fun/coop/api/',
+  headers: { Authorization: '378d495614cba0f6da29ecc3c551b7070c21a008' }
 });
 
 Vue.config.productionTip = false

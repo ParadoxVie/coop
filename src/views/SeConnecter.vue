@@ -10,11 +10,13 @@
                 <input class="input is-primary is-rounded" v-model="email" type="email" placeholder="Mail" required>
             </div>
             <br>
+
             <div class="Pwd">
                 <p class="subtitle is-5"> Saisir votre mot de passe</p>
                 <input class="input is-primary is-rounded" v-model="password" type="password" placeholder="Mot de passe" required>
             </div>
             <br>
+
             <button class="button is-primary">Connexion</button>
             <p><router-link to='creer-Compte'>Créer un compte</router-link></p>
         </form>
@@ -36,6 +38,8 @@ export default {
     },
 
     methods: {
+        
+        //Permet de vérifier la connexion avec l'api, si oui envoie la personne sur la lite des conversations et save les informations dans le store
         seConnecter(){
             api.post('members/signin', {
                 email: this.email,
